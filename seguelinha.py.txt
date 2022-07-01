@@ -1,0 +1,34 @@
+
+def control(left_sensor, right_sensor, speed):
+    e = right_sensor - left_sensor
+    speed =  0.5
+    eng = 0
+    brake = 0
+    if e >= 1 :
+       eng = 4000
+    elif 1 > e >= 0.75 :
+       eng = 3750
+    elif 0.75 > e >= 0.5 :
+       eng = 3500
+    elif 0.5 > e >= 0.25 :
+       eng = 3225
+    elif 0.25 > e >= 0 :
+       eng = 3000
+    elif 0 > e >= -0.25 :
+       eng = 2775
+    elif -0.25 > e >= -0.5 : 
+       eng = 2500
+    elif -0.5 > e >= -0.75 :
+       eng = 2225
+    else :
+       eng = 2000
+    return {
+        'engineTorque': eng,
+        'brakingTorque': brake,
+        'steeringAngle': e,
+        'log': [
+            { 'name': 'Speed', 'value': speed, 'min': 0, 'max': 200 },
+            { 'name': 'Left_sensor', 'value': left_sensor, 'min': 0, 'max': 1 },
+            { 'name': 'Right_sensor', 'value': right_sensor, 'min': 0, 'max': 1 }
+        ]
+    }
